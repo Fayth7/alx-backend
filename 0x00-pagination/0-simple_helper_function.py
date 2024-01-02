@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Pagination """
 
+
 def index_range(page, page_size):
     '''
         Returns the range of indexes for a given page.
