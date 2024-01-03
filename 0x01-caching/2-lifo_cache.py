@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
-""" FIFOCache module
+""" LIFOCache module
 """
 
 from base_caching import BaseCaching
 
 
-class FIFOCache(BaseCaching):
-    """ FIFOCache class
+class LIFOCache(BaseCaching):
+    """ LIFOCache class
     """
 
     def __init__(self):
-        """ Initialize the FIFOCache
+        """ Initialize the LIFOCache
         """
         super().__init__()
 
     def put(self, key, item):
-        """ Add an item to the cache using FIFO algorithm
+        """ Add an item to the cache using LIFO algorithm
         """
         if key is not None and item is not None:
             if len(self.cache_data) >= self.MAX_ITEMS:
-                # Discard the first item (FIFO)
-                discarded_key, _ = next(iter(self.cache_data.items()))
+                # Discard the last item (LIFO)
+                discarded_key = list(self.cache_data.keys())[-1]
                 del self.cache_data[discarded_key]
                 print("DISCARD:", discarded_key)
 
@@ -31,11 +31,11 @@ class FIFOCache(BaseCaching):
         """
         if key is not None:
             return self.cache_data.get(key, None)
-    return None
+        return None
 
 
 if __name__ == "__main__":
-    my_cache = FIFOCache()
+    my_cache = LIFOCache()
 
     my_cache.put("A", "Hello")
     my_cache.put("B", "World")
@@ -47,4 +47,6 @@ if __name__ == "__main__":
     my_cache.put("C", "Street")
     my_cache.print_cache()
     my_cache.put("F", "Mission")
+    my_cache.print_cache()
+    my_cache.put("G", "San Francisco")
     my_cache.print_cache()
