@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ gettext('home_title') }}</title>
+</head>
+<body>
+    {% if g.user %}
+        <p>{{ logged_in_as|format(username=g.user['name']) }}</p>
+    {% else %}
+        <p>{{ not_logged_in }}</p>
+    {% endif %}
+    <h1>{{ gettext('home_header') }}</h1>
+    <p>{{ _('Current Time Zone: %(timezone)s')|format(timezone=get_timezone()) }}</p>
+</body>
+</html>
