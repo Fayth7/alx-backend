@@ -22,6 +22,14 @@ class Config:
 app.config.from_object(Config)
 
 
+@app.route('/', methods=['GET'], strict_slashes=False)
+def helloWorld() -> str:
+    '''
+        Render template for Babel usage return rendered template
+    '''
+    return render_template('3-index.html')
+
+
 @babel.localeselector
 def get_locale():
     """
@@ -35,15 +43,5 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@app.route('/')
-def index():
-    """
-    Route for the index page
-    """
-    return render_template('4-index.html', title=_("home_title"),
-                           header=_("home_header"),
-                           current_locale=str(get_locale()))
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()

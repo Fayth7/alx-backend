@@ -25,7 +25,7 @@ app.config.from_object(Config)
 @app.route('/', methods=['GET'], strict_slashes=False)
 def helloWorld() -> str:
     '''
-        Render template for Babel usage.
+        Render template for Babel usage and return rendered template
     '''
     return render_template('3-index.html')
 
@@ -41,7 +41,7 @@ def get_locale():
 @app.route('/')
 def index():
     """
-    Route for the index page
+    Route for the index page to translate message
     """
     # Use the _ function to translate messages
     return render_template('3-index.html', title=_("home_title"),
